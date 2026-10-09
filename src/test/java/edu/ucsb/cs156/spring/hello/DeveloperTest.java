@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,26 @@ public class DeveloperTest {
         assertEquals("Cris M.", Developer.getName());
     }
 
-    // TODO: Add additional tests as needed to get to 100% jacoco line coverage, and
-    // 100% mutation coverage (all mutants timed out or killed)
+    @Test 
+    public void getGithubId_returns_correct_github_id() {
+        assertEquals("cmendietaa", Developer.getGithubId());
+    }
+
+    @Test 
+    public void getTeam_returns_correct_team() {
+        Team team = Developer.getTeam();
+        assertEquals("f26-10", team.getName());
+        assertTrue(team.getMembers().contains("Ataman Y."), "Team members should contain Ataman Y.");
+        assertTrue(team.getMembers().contains("Nathan Z."), "Team members should contain Nathan Z.");
+        assertTrue(team.getMembers().contains("Cris M."), "Team members should contain Cris M.");
+        assertTrue(team.getMembers().contains("Shivansh G."), "Team members should contain Shivansh G.");
+        assertTrue(team.getMembers().contains("Yongxin Z."), "Team members should contain Yongxin Z.");
+        assertTrue(team.getMembers().contains("Zhewen J."), "Team members should contain Zhewen J.");
+    }
+    @Test
+    public void getTeam_returns_exact_members_in_order() {
+        assertEquals(List.of("Ataman Y.", "Nathan Z.", "Cris M.", "Shivansh G.",
+                "Yongxin Z.", "Zhewen J."), Developer.getTeam().getMembers());
+    }
 
 }
